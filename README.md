@@ -194,9 +194,9 @@ Network Effect:
 
 ## 📊 Pilot Results - Quantified Proof
 
-### 14-Day Pilot (Jan 20 - Feb 3, 2026)
+### 28-Day Pilot (Jan 5 - Feb 3, 2026)
 
-**Participants:** 47 seniors (ages 62-78) in Pune & Jaipur  
+**Participants:** 10+ seniors (ages 62-78) in Pune & Jaipur  
 **Tests Conducted:** 189 scam checks  
 
 | Metric | Before SHIELD | After SHIELD | Improvement |
@@ -257,9 +257,9 @@ Network Effect:
 
 | Partner | Role | Status | Impact |
 |---------|------|--------|--------|
-| **HelpAge India** | 1.2M seniors, 22 states | LOI signed | Primary channel |
-| **Agewell Foundation** | Train-the-trainer workshops | MOU in progress | 50+ centers |
-| **Cyber Dost (MHA)** | Gov awareness materials | Outreach initiated | National credibility |
+| **HelpAge India** | 1.2M seniors, 22 states | Active Outreaching  | Primary channel |
+| **Agewell Foundation** | Train-the-trainer workshops | Active Outreaching  | 50+ centers |
+| **Cyber Dost (MHA)** | Gov awareness materials | Active Outreaching | National credibility |
 
 ### Rollout Timeline
 ```
@@ -336,7 +336,7 @@ python -m streamlit run app.py
 
 ### 10 Unique Strengths
 
-1. ✅ **Only solution with PROOF** - 47-user pilot with quantified results
+1. ✅ **Only solution with PROOF** - 10+ user pilot with quantified results
 2. ✅ **Only India-specific scam DB** - Digital arrest, fake KYC patterns
 3. ✅ **Only collaborative intelligence** - Fingerprint network (79.7% cache hit)
 4. ✅ **Only radical accessibility** - 4x button size, Hindi-first, voice-first
@@ -346,20 +346,6 @@ python -m streamlit run app.py
 8. ✅ **Only community-validated** - NGO partnerships, gov engagement
 9. ✅ **Only scalable** - 1K → 1M users roadmap
 10. ✅ **Only production-ready** - Monitoring, DR, CI/CD
-
----
-
-## 📊 Project Status
-
-| Milestone | Status | Date |
-|-----------|--------|------|
-| Pilot Testing (47 users) | ✅ Complete | Feb 3, 2026 |
-| AWS Infrastructure | ✅ Complete | Feb 5, 2026 |
-| Requirements.md | ✅ Complete | Jan 28, 2026 |
-| Design.md | ✅ Complete | Jan 28, 2026 |
-| Presentation.pdf | 🔄 In Progress | Due: Jan 29 |
-| Hackathon Submission | ⏳ Pending | Deadline: Jan 25 |
-| HelpAge India LOI | ✅ Signed | Jan 15, 2026 |
 
 ---
 
@@ -376,7 +362,7 @@ python -m streamlit run app.py
 
 **Aditya Kashyap** - Operations & Growth Lead  
 - Community management, user research
-- Operations for 50+ university events
+- Operations for 5+ university events
 - Strategic partnerships & business development
 
 ---
@@ -390,10 +376,9 @@ MIT License - Use freely, protect responsibly.
 ## 🙏 Acknowledgments
 
 - **AWS AI for Bharat** - Platform for this innovation
-- **HelpAge India** - Partnership and field testing
 - **Agewell Foundation** - Community access
 - **Cyber Dost (MHA)** - Government alignment
-- **47 Pilot Participants** - Invaluable feedback
+- **10+ Pilot Participants** - Invaluable feedback
 - **Our Grandparents** - The inspiration for this project
 
 ---
