@@ -7,15 +7,16 @@
 [![AWS AI for Bharat](https://img.shields.io/badge/AWS%20AI%20for%20Bharat-2026-FF9900.svg)](https://aws.amazon.com/events/ai-for-bharat/)
 [![Track 6](https://img.shields.io/badge/Track-AI%20for%20Communities-blueviolet.svg)](https://github.com/BEAST04289/SHIELD)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB.svg)](https://python.org)
-[![AWS](https://img.shields.io/badge/AWS-15%20Services-FF9900.svg)](https://aws.amazon.com)
-[![Powered by Bedrock](https://img.shields.io/badge/Bedrock-Claude%203.5-orange.svg)](https://aws.amazon.com/bedrock/)
+[![AWS](https://img.shields.io/badge/AWS-7%20Services-FF9900.svg)](https://aws.amazon.com)
+[![Powered by Bedrock](https://img.shields.io/badge/Bedrock-Claude%20Haiku%204.5-orange.svg)](https://aws.amazon.com/bedrock/)
+[![Live](https://img.shields.io/badge/Live-http%3A%2F%2F13.233.134.225-brightgreen.svg)](http://13.233.134.225)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **India's first AI-powered scam guardian with collaborative threat intelligence. Protects 140M seniors from Rs 1,200 Crore annual cyber fraud epidemic using AWS AI services with Hindi voice-first accessibility.**
 
 ### 🎯 [AWS AI for Bharat 2026 Submission - Track 6: AI for Communities](https://aws.amazon.com/events/ai-for-bharat/)
 
-[📊 Live Demo (Coming Soon)](#) • [📖 Requirements](requirements.md) • [🏗️ Architecture](design.md) • [📑 Presentation](presentation.pdf)
+[📊 Live Demo](http://13.233.134.225) • [📖 Requirements](requirements.md) • [🏗️ Architecture](design.md) • [📑 Presentation](presentation.pdf)
 
 ---
 
@@ -108,48 +109,63 @@ Total Time: ~0.2 seconds (cached) / ~3-8 seconds (fresh analysis)
 
 ## 🏗️ AWS Architecture
 
-### Serverless, Multi-Region, Cost-Optimized
+### EC2 + Gunicorn + Nginx, Security-Hardened
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    AWS CLOUD (ap-south-1)                   │
+│                 AWS CLOUD (ap-south-1 Mumbai)                │
+│                                                              │
+│  EC2 (t3.micro, Ubuntu 24.04 LTS)                           │
+│  ├── Nginx (Reverse Proxy, port 80)                          │
+│  └── Gunicorn (2 workers, port 8000)                         │
+│       └── Flask App (Security Hardened)                      │
+│            │                                                 │
+│            ├──> INPUT LAYER                                  │
+│            │    • Bedrock Vision (Screenshot OCR + Analysis)  │
+│            │    • Textract (Hindi OCR fallback)               │
+│            │    • Transcribe (Speech-to-Text)                 │
+│            │                                                 │
+│            ├──> AI BRAIN LAYER                               │
+│            │    • Bedrock (Claude Haiku 4.5)                  │
+│            │    • 12 India-specific scam patterns             │
+│            │                                                 │
+│            ├──> INNOVATION LAYER                             │
+│            │    • DynamoDB (Fingerprint SHA-256 cache)        │
+│            │    • 7-day TTL, auto-expiry                     │
+│            │                                                 │
+│            └──> OUTPUT LAYER                                 │
+│                 • Polly (Hindi voice - Kajal Neural)          │
+│                 • S3 (Temp audio storage)                    │
 └─────────────────────────────────────────────────────────────┘
-
-USER (PWA on S3 + CloudFront)
-    │
-    ├──> API Gateway (WAF + Rate Limiting)
-    │
-    └──> Lambda (Python 3.11, Multi-AZ)
-         │
-         ├──> INPUT LAYER
-         │    • Textract (Hindi OCR)
-         │    • Transcribe (Speech-to-Text)
-         │
-         ├──> AI BRAIN LAYER
-         │    • Bedrock (Claude Haiku 4.5)
-         │    • Comprehend (Sentiment)
-         │    • Translate (Regional languages)
-         │
-         ├──> INNOVATION LAYER
-         │    • DynamoDB + DAX (Fingerprint cache)
-         │    • EventBridge (Cross-region sync)
-         │
-         └──> OUTPUT LAYER
-              • Polly (Hindi voice - Aditi Neural)
-              • SNS (Family SMS alerts)
-              • S3 (24h auto-delete)
 ```
 
-### 15 AWS Services Used
+### 7 AWS Services Used
 
-| Layer | Services |
-|-------|----------|
-| **AI/ML** | Bedrock, Textract, Transcribe, Polly, Comprehend |
-| **Compute** | Lambda, Step Functions |
-| **Data** | DynamoDB, ElastiCache (DAX), S3 |
-| **Delivery** | CloudFront, API Gateway, Route 53 |
-| **Security** | KMS, Secrets Manager, WAF, GuardDuty |
+| Layer | Services | Purpose |
+|-------|----------|----------|
+| **AI/ML** | Bedrock (Claude Haiku 4.5) | Scam analysis + Vision OCR |
+| **OCR** | Textract | Hindi/English text extraction |
+| **Speech** | Transcribe | Audio-to-text (hi-IN) |
+| **Voice** | Polly (Kajal Neural) | Hindi voice alerts |
+| **Database** | DynamoDB | Fingerprint cache |
+| **Storage** | S3 | Temp audio uploads |
+| **Compute** | EC2 (t3.micro) | Hosting (free tier) |
 
-**All 5 AWS Well-Architected Pillars implemented** ✅
+### 🔒 Security Hardening (12 Layers)
+
+| Layer | Protection |
+|-------|------------|
+| Security Headers | CSP, X-Frame-Options, XSS Protection, HSTS |
+| API Key Auth | Timing-safe comparison, Bearer token support |
+| RBAC | Admin-only endpoints with separate key |
+| Rate Limiting | 50/day per IP + 10/minute burst protection |
+| CORS | Restricted to allowed origins only |
+| Input Sanitization | HTML stripping, null byte removal, length limits |
+| SSRF Protection | Blocks localhost, private IPs, metadata endpoints |
+| File Validation | Magic byte check for images, extension whitelist |
+| Error Masking | Stack traces hidden in production |
+| Nginx Proxy | Reverse proxy with request size limits |
+| systemd | Auto-restart on crash/reboot |
+| HTTPS-ready | HSTS headers enabled for production |
 
 ---
 
@@ -289,17 +305,15 @@ Dec 2026: 500+ centers → 100,000 users (National)
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### 🌐 Live Demo
 
-- AWS Account with Bedrock access
-- Python 3.10+
-- AWS Account with Bedrock model access enabled
+**Live at: http://13.233.134.225** (AWS EC2, ap-south-1 Mumbai)
 
-### Installation
+### Local Development
 ```bash
 # Clone repository
-git clone https://github.com/BEAST04289/SHIELD.git
-cd SHIELD/AWS_AI-FOR-BHARAT
+git clone https://github.com/BEAST04289/AWS_AI-FOR-BHARAT.git
+cd AWS_AI-FOR-BHARAT
 
 # Create virtual environment
 python -m venv .venv
@@ -316,9 +330,21 @@ cp .env.example .env
 # Run locally
 python app.py
 # Server starts at http://localhost:5000
+```
 
-# Production (Gunicorn)
-gunicorn app:app --bind 0.0.0.0:5000
+### EC2 Deployment (One-Click)
+```bash
+# SSH into EC2 instance (Ubuntu 24.04 LTS, t3.micro)
+ssh -i shield-key.pem ubuntu@<EC2-IP>
+
+# Clone and deploy (automated setup)
+git clone https://github.com/BEAST04289/AWS_AI-FOR-BHARAT.git
+cd AWS_AI-FOR-BHARAT
+nano deploy/setup.sh   # Add your AWS credentials
+bash deploy/setup.sh   # Installs everything + starts service
+
+# Auto-configures: Gunicorn + Nginx + systemd auto-restart
+# Your URL: http://<EC2-PUBLIC-IP>
 ```
 
 ---

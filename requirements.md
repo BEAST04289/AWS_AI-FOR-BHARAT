@@ -322,7 +322,7 @@ Step 7: Returns verdict INSTANTLY (200ms, $0 cost)
 | **Hindi OCR accuracy** | **94%** (Textract) | 76% (Computer Vision) | 81% (Document AI) |
 | **Hindi voice quality** | **Aditi Neural (best)** | Robotic (standard TTS) | Acceptable (WaveNet) |
 | **India region** | **ap-south-1 Mumbai** | Limited coverage | Singapore (higher latency) |
-| **Free tier (Lambda)** | **1M requests** | 1M executions | 2M invocations |
+| **Compute (EC2)** | **t3.micro Free Tier** | B1s (Free 750h) | e2-micro (Free) |
 | **LLM for Hindi** | **Claude 3.5 (Bedrock)** | GPT-4 (less Hindi context) | Gemini (good but costlier) |
 
 **Test Data (Controlled 100-message test):**
@@ -337,7 +337,7 @@ Step 7: Returns verdict INSTANTLY (200ms, $0 cost)
 
 | Provider | Monthly Cost | Breakdown |
 |----------|-------------|-----------|
-| **AWS** | **$160.60** | Lambda $0.60, Bedrock $24, Textract $75, Transcribe $24, Polly $2, DynamoDB $2.50, SNS $32.50 |
+| **AWS** | **$135.00** | EC2 $8.50, Bedrock $24, Textract $75, Transcribe $24, Polly $2, DynamoDB $1.50 |
 | Azure | $340.00 | No generous free tier for Speech/Vision |
 | GCP | $280.00 | Vertex AI more expensive than Bedrock |
 
@@ -457,7 +457,7 @@ Step 7: Returns verdict INSTANTLY (200ms, $0 cost)
 
 - ✅ **Problem clarity:** Rs 1,200 Crore crisis, 140M seniors vulnerable
 - ✅ **User validation:** 10+ user pilot with quantified results
-- ✅ **Technical depth:** AWS Well-Architected, 15 services, code examples
+- ✅ **Technical depth:** AWS Well-Architected, 7 AWS services, Security Hardened Flask App
 - ✅ **Innovation:** Scam fingerprint network (first in India)
 - ✅ **Community impact:** NGO partnerships initiated, 100K user target
 - ✅ **Scalability:** Multi-region roadmap, cost-optimized

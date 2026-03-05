@@ -39,51 +39,20 @@ hackathon: AWS AI for Bharat 2026
 │           │                           │                         │
 │           └───────────┬───────────────┘                         │
 └───────────────────────┼─────────────────────────────────────────┘
-                        │ HTTPS/TLS 1.3
+                        │ HTTP/HTTPS
                         ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                      CDN & EDGE LAYER                           │
-│                                                                 │
-│         ┌──────────────────────────────────────┐                │
-│         │    Amazon CloudFront (CDN)           │                │
-│         │  • Mumbai/Delhi/Chennai POPs         │                │
-│         │  • Static asset caching (S3 origin)  │                │
-│         │  • DDoS protection (AWS Shield)      │                │
-│         └──────────────┬───────────────────────┘                │
-└────────────────────────┼────────────────────────────────────────┘
-                         │
-                         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    API GATEWAY LAYER                            │
+│                    COMPUTE LAYER (EC2)                          │
 │                  (ap-south-1 Mumbai)                            │
 │                                                                 │
 │         ┌──────────────────────────────────────┐                │
-│         │   Amazon API Gateway (REST)          │                │
-│         │  • Rate limiting: 1000 req/min       │                │
-│         │  • AWS WAF (SQL injection, XSS)      │                │
-│         │  • Request/response transformation   │                │
-│         │  • CloudWatch logging                │                │
+│         │   Amazon EC2 (t3.micro, Ubuntu)      │                │
+│         │  • Nginx Reverse Proxy (Port 80)     │                │
+│         │  • Gunicorn (2 Workers)              │                │
+│         │  • Flask API (Security Hardened)     │                │
+│         │  • Rates: 50/day/IP + Burst Limit    │                │
 │         └──────────────┬───────────────────────┘                │
 └────────────────────────┼────────────────────────────────────────┘
-                         │
-                         ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    COMPUTE LAYER                                │
-│                                                                 │
-│         ┌──────────────────────────────────────┐                │
-│         │    AWS Lambda (Python 3.11)          │                │
-│         │  • Multi-AZ deployment (3 AZs)       │                │
-│         │  • Provisioned concurrency: 100      │                │
-│         │  • Memory: 256MB - 1024MB            │                │
-│         │  • X-Ray tracing enabled             │                │
-│         └──────────────┬───────────────────────┘                │
-│                        │                                        │
-│         ┌──────────────┴───────────────────┐                    │
-│         │    AWS Step Functions (Workflow) │                    │
-│         │  • Multi-step scam analysis      │                    │
-│         │  • Error handling + retries      │                    │
-│         └──────────────────────────────────┘                    │
-└─────────────────────────────────────────────────────────────────┘
                          │
          ┌───────────────┼───────────────┐
          │               │               │
@@ -91,26 +60,27 @@ hackathon: AWS AI for Bharat 2026
 ┌────────────────┐ ┌──────────────┐ ┌──────────────┐
 │  INPUT LAYER   │ │  AI BRAIN    │ │ OUTPUT LAYER │
 │                │ │   LAYER      │ │              │
-│ • Textract     │ │ • Bedrock    │ │ • Polly      │
-│   (OCR)        │ │   (Claude)   │ │   (Voice)    │
-│ • Transcribe   │ │ • Comprehend │ │ • SNS (SMS)  │
-│   (Speech)     │ │   (Sentiment)│ │ • DynamoDB   │
-│                │ │ • Translate  │ │   (Storage)  │
+│ • Bedrock      │ │ • Bedrock    │ │ • Polly      │
+│   Vision (OCR) │ │   Claude 4.5 │ │   (Voice)    │
+│ • Textract     │ │   Haiku      │ │ • S3         │
+│   (Fallback)   │ │ • 12 India   │ │   (Temp      │
+│ • Transcribe   │ │   scam       │ │   Media)     │
+│   (Speech)     │ │   patterns   │ │ • DynamoDB   │
+│                │ │              │ │   (Cache)    │
 └────────────────┘ └──────────────┘ └──────────────┘
 ```
 
-### 1.2 AWS Services Used (15 Total)
+### 1.2 AWS Services Used (7 Total)
 
 | Category | Services | Purpose |
 |----------|----------|---------|
-| **Delivery** | CloudFront, S3, Route 53 | Content delivery, static hosting, DNS |
-| **API** | API Gateway, WAF | REST endpoints, security |
-| **Compute** | Lambda, Step Functions | Serverless processing, workflow orchestration |
-| **AI/ML** | Bedrock, Textract, Transcribe, Polly, Comprehend | Scam detection, OCR, speech, voice |
-| **Data** | DynamoDB, ElastiCache (DAX), S3 | User profiles, fingerprints, media storage |
-| **Messaging** | SNS, EventBridge | Family alerts, cross-region events |
-| **Security** | KMS, Secrets Manager, Cognito | Encryption, secrets, user auth |
-| **Monitoring** | CloudWatch, X-Ray | Logs, metrics, distributed tracing |
+| **Compute** | EC2 | Web hosting, reverse proxy, app logic |
+| **AI/Visual** | Bedrock Vision, Textract | Screenshot OCR & analysis |
+| **AI/Text** | Bedrock (Claude 4.5 Haiku) | Scam detection reasoning |
+| **AI/Speech** | Transcribe | Audio-to-text for calls |
+| **AI/Voice** | Polly (Kajal Neural) | Hindi voice generation |
+| **Data** | DynamoDB | Fingerprint cache store |
+| **Storage** | S3 | Temp audio storage |
 
 ---
 
