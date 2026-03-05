@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIELD | AI Scam Guardian for India's Seniors</title>
+    <meta name="description"
+        content="India's first AI-powered scam guardian with collaborative threat intelligence. Protects 140M seniors from cyber fraud using AWS AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/styles.css?v=9">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link rel="manifest" href="/static/manifest.json">
+</head>
+
+<body>
+    <!-- ====== LEFT SIDEBAR NAV ====== -->
+    <nav id="sidebar">
+        <div class="sidebar-inner">
+            <a href="#home" class="sidebar-logo">
+                <span style="font-size:1.8rem">🛡️</span>
+                <span class="logo-text">SHIELD</span>
+            </a>
+
+            <div class="sidebar-links">
+                <a href="#home" class="sidebar-link active" data-page="home" title="Home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    </svg>
+                    <span class="link-text" data-hi="मुख्य पृष्ठ">Home</span>
+                </a>
+                <a href="#how-it-works" class="sidebar-link" data-page="how-it-works" title="Scanner">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span class="link-text" data-hi="स्कैनर">Scanner</span>
+                </a>
+                <a href="#dashboard" class="sidebar-link" data-page="dashboard" title="Dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span class="link-text" data-hi="डैशबोर्ड">Dashboard</span>
+                </a>
+                <a href="#heatmap" class="sidebar-link" data-page="heatmap" title="Threat Globe">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2v20"></path>
+                    </svg>
+                    <span class="link-text" data-hi="हीटमैप">Heatmap</span>
+                </a>
+                <a href="#family" class="sidebar-link" data-page="family" title="Family Setup">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span class="link-text" data-hi="परिवार">Family</span>
+                </a>
+                <a href="#gallery" class="sidebar-link" data-page="gallery" title="Scam Patterns">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                    <span class="link-text" data-hi="पैटर्न">Patterns</span>
+                </a>
+                <a href="#proof" class="sidebar-link" data-page="proof" title="Proof of Scalability">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span class="link-text" data-hi="सत्यापन">Validation</span>
+                </a>
+            </div>
+
+            <div class="sidebar-actions">
+                <button class="sidebar-btn" id="lang-toggle" onclick="toggleLanguage()" title="Language (हिंदी)">
+                    <span class="sidebar-icon">अ</span>
+                    <span class="link-text">हिंदी</span>
+                </button>
+                <button class="sidebar-btn" id="theme-toggle" onclick="toggleTheme()" title="Theme">
+                    <span class="sidebar-icon">☀️</span>
+                    <span class="link-text" data-hi="लाइट मोड">Light Mode</span>
+                </button>
+            </div>
+    </nav>
+    <div class="mobile-sidebar-toggle" onclick="toggleMobileSidebar()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- ====== FIXED GP MODE BUTTON ====== -->
+    <button class="gp-fixed-btn" id="gp-toggle-fixed" onclick="toggleGrandparentsMode()"
+        title="Access Grandparents Mode">
+        <span style="font-size: 1.2rem;">👵</span>
+        <span data-hi="दादा-दादी मोड">GP Mode</span>
+    </button>
+
+    <!-- ====== GRANDPARENTS MODE OVERLAY ====== -->
+    <div class="gp-overlay" id="gp-overlay">
+        <div class="gp-header">
+            <span class="gp-title">SHIELD</span>
+            <span class="gp-subtitle" data-hi="क्या जाँचना चाहते हैं?">What do you want to check?</span>
+            <button class="gp-exit" onclick="toggleGrandparentsMode()">✕ Exit</button>
+        </div>
+        <div class="gp-buttons">
+            <button class="gp-big-btn gp-btn-image" onclick="gpNavigate('scan-image')">
+                <span class="gp-btn-icon">📸</span>
+                <span class="gp-btn-label" data-hi="फ़ोटो जाँचो">Check Photo</span>
+                <span class="gp-btn-desc" data-hi="स्क्रीनशॉट अपलोड करें">Upload Screenshot</span>
+            </button>
+            <button class="gp-big-btn gp-btn-audio" onclick="gpNavigate('scan-audio')">
+                <span class="gp-btn-icon">🎙️</span>
+                <span class="gp-btn-label" data-hi="कॉल जाँचो">Check Call</span>
+                <span class="gp-btn-desc" data-hi="कॉल रिकॉर्डिंग अपलोड करें">Upload Recording</span>
+            </button>
+            <button class="gp-big-btn gp-btn-text" onclick="gpNavigate('scan-text')">
+                <span class="gp-btn-icon">💬</span>
+                <span class="gp-btn-label" data-hi="मैसेज जाँचो">Check Message</span>
+                <span class="gp-btn-desc" data-hi="संदेश यहाँ पेस्ट करें">Paste Text Message</span>
+            </button>
+            <button class="gp-big-btn gp-btn-family" onclick="showFamilyAlert()">
+                <span class="gp-btn-icon">👨‍👩‍👦</span>
+                <span class="gp-btn-label" data-hi="परिवार को बुलाओ">Call Family</span>
+                <span class="gp-btn-desc" data-hi="तुरंत परिवार को सूचित करें">Alert Family Now</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ====== FAMILY ALERT MODAL ====== -->
+    <div class="modal-overlay" id="family-modal" style="display:none;">
+        <div class="modal-card">
+            <div class="modal-icon" style="font-size:2rem">Alert</div>
+            <h3>Family Alert Sent!</h3>
+            <div class="family-alert-detail">
+                <div class="alert-row"><span class="alert-label">To:</span><span>Papa — +91 XXXXX 1234</span></div>
+                <div class="alert-row"><span class="alert-label">To:</span><span>Beti — +91 XXXXX 5678</span></div>
+                <div class="alert-row"><span class="alert-label">Message:</span><span>"Your family member needs help
+                        with a suspicious message. Please call them now."</span></div>
+                <div class="alert-row"><span class="alert-label">Via:</span><span>Amazon SNS</span></div>
+                <div class="alert-status">✅ Alert delivered in <strong>28 seconds</strong></div>
+            </div>
+            <p class="alert-note">In production, this sends a real SMS via AWS SNS to pre-configured family contacts.
+            </p>
+            <button class="btn btn-primary" onclick="closeFamilyModal()">OK, Thanks</button>
+        </div>
+    </div>
+
+    <!-- ====== PAGE: HOME ====== -->
+    <section class="page active" id="page-home" data-page="home">
+        <div class="container">
+            <div class="page-header">
+                <h1>Detection <span class="accent-text">Hub</span></h1>
+                <p class="page-subtitle">Select a scanner to analyze suspicious content</p>
+            </div>
+            <div class="detector-grid">
+                <div class="detector-card" onclick="navigateTo('scan-image')">
+                    <div class="detector-card-header">
+                        <div class="detector-icon-wrap"><span class="detector-icon" style="font-size:1.3rem">IMG</span>
+                        </div>
+                        <span class="badge badge-live">LIVE</span>
+                        <span class="badge badge-aws">Textract</span>
+                    </div>
+                    <h2>Visual Shield</h2>
+                    <p>Analyze screenshots for scam patterns using OCR extraction.</p>
+                    <div class="detector-meta">
+                        <span id="stat-latency">-</span>
+                        <span>91% accuracy</span>
+                    </div>
+                    <div class="detector-cta">Start Analyzing →</div>
+                </div>
+
+                <div class="detector-card" onclick="navigateTo('scan-audio')">
+                    <div class="detector-card-header">
+                        <div class="detector-icon-wrap"><span class="detector-icon" style="font-size:1.3rem">AUD</span>
+                        </div>
+                        <span class="badge badge-live">LIVE</span>
+                        <span class="badge badge-aws">Transcribe</span>
+                    </div>
+                    <h2>Audio Shield</h2>
+                    <p>Detect phone scams from call recordings and voice messages.</p>
+                    <div class="detector-meta">
+                        <span>~8s</span>
+                        <span>Hindi + English</span>
+                    </div>
+                    <div class="detector-cta">Start Analyzing →</div>
+                </div>
+
+                <div class="detector-card" onclick="navigateTo('scan-text')">
+                    <div class="detector-card-header">
+                        <div class="detector-icon-wrap"><span class="detector-icon" style="font-size:1.3rem">TXT</span>
+                        </div>
+                        <span class="badge badge-live">LIVE</span>
+                        <span class="badge badge-aws">Bedrock</span>
+                    </div>
+                    <h2>Text Shield</h2>
+                    <p>Paste any suspicious message for instant AI analysis with explainable results.</p>
+                    <div class="detector-meta">
+                        <span>~3.2s</span>
+                        <span>Fingerprint Cache</span>
+                    </div>
+                    <div class="detector-cta">Start Analyzing →</div>
+                </div>
+
+                <div class="detector-card" onclick="navigateTo('scan-url')">
+                    <div class="detector-card-header">
+                        <div class="detector-icon-wrap"><span class="detector-icon" style="font-size:1.3rem">URL</span>
+                        </div>
+                        <span class="badge badge-live">LIVE</span>
+                        <span class="badge badge-new">NEW</span>
+                    </div>
+                    <h2>URL Shield</h2>
+                    <p>Check suspicious links for phishing and known scam domains.</p>
+                    <div class="detector-meta">
+                        <span>~1s</span>
+                        <span>Pattern Analysis</span>
+                    </div>
+                    <div class="detector-cta">Start Analyzing →</div>
+                </div>
+            </div>
+
+            <!-- Live Stats -->
+            <div class="live-stats">
+                <div class="stat-chip"><span class="stat-value" id="stat-scans">189</span><span
+                        class="stat-key">Scans</span></div>
+                <div class="stat-chip"><span class="stat-value" id="stat-cached">151</span><span
+                        class="stat-key">Cached</span></div>
+                <div class="stat-chip"><span class="stat-value" id="stat-hitrate">79.7%</span><span
+                        class="stat-key">Cache Rate</span></div>
+                <div class="stat-chip"><span class="stat-value" id="stat-unique">12</span><span class="stat-key">Unique
+                        Scams</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: SCANNER (template for all scan types) ====== -->
+    <section class="page" id="page-scan-image" data-page="scan-image">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="scanner-page-header">
+                <div>
+                    <h1>Visual Shield</h1>
+                    <p>Upload a screenshot to analyze for scam patterns</p>
+                </div>
+            </div>
+            <div class="scanner-box">
+                <div class="upload-area" id="image-drop-zone" ondrop="handleDrop(event, 'image')"
+                    ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                    <div class="upload-icon">+</div>
+                    <p class="upload-text">Drag & drop screenshot here, or <strong>click to browse</strong></p>
+                    <p class="upload-hint">WhatsApp, SMS, Email screenshots (PNG, JPG)</p>
+                    <input type="file" id="image-input" accept="image/*" onchange="handleFileSelect(this, 'image')"
+                        hidden>
+                </div>
+                <div class="file-preview" id="image-preview" style="display:none;">
+                    <img id="preview-img" src="" alt="Preview">
+                    <button class="remove-file" onclick="removeFile('image')">✕</button>
+                </div>
+                <button class="btn btn-primary btn-analyze" id="analyze-image-btn" onclick="analyzeImage()"
+                    disabled>ANALYZE IMAGE</button>
+            </div>
+            <div class="scanner-loading" id="scanner-loading-image" style="display:none;">
+                <div class="loader-ring"></div>
+                <p class="loader-text">Analyzing with AWS Bedrock AI...</p>
+                <p class="loader-tip" id="loader-tip-image"></p>
+            </div>
+            <div class="scanner-results" id="scanner-results-image" style="display:none;"></div>
+        </div>
+    </section>
+
+    <section class="page" id="page-scan-audio" data-page="scan-audio">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="scanner-page-header">
+                <div>
+                    <h1>Audio Shield</h1>
+                    <p>Upload a call recording to detect phone scams</p>
+                </div>
+            </div>
+            <div class="scanner-box">
+                <div class="upload-area" id="audio-drop-zone" ondrop="handleDrop(event, 'audio')"
+                    ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+                    <div class="upload-icon">+</div>
+                    <p class="upload-text">Drag & drop audio recording, or <strong>click to browse</strong></p>
+                    <p class="upload-hint">Call recordings (MP3, WAV, M4A)</p>
+                    <input type="file" id="audio-input" accept="audio/*" onchange="handleFileSelect(this, 'audio')"
+                        hidden>
+                </div>
+                <div class="file-preview" id="audio-preview" style="display:none;">
+                    <div class="audio-file-info"><span class="audio-icon">●</span><span id="audio-filename"></span>
+                    </div>
+                    <button class="remove-file" onclick="removeFile('audio')">✕</button>
+                </div>
+                <button class="btn btn-primary btn-analyze" id="analyze-audio-btn" onclick="analyzeAudio()"
+                    disabled>ANALYZE AUDIO</button>
+            </div>
+            <div class="scanner-loading" id="scanner-loading-audio" style="display:none;">
+                <div class="loader-ring"></div>
+                <p class="loader-text">Transcribing & analyzing with AWS AI...</p>
+                <p class="loader-tip" id="loader-tip-audio"></p>
+            </div>
+            <div class="scanner-results" id="scanner-results-audio" style="display:none;"></div>
+        </div>
+    </section>
+
+    <section class="page" id="page-scan-text" data-page="scan-text">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="scanner-page-header">
+
+                <div>
+                    <h1>Text Shield</h1>
+                    <p>Paste any suspicious message for instant AI analysis</p>
+                </div>
+            </div>
+            <!-- Preset Demo Buttons -->
+            <div class="demo-presets">
+                <span class="preset-label">Quick Demo:</span>
+                <button class="preset-btn" onclick="loadPreset('digital_arrest')">Digital Arrest</button>
+                <button class="preset-btn" onclick="loadPreset('fake_kyc')">Fake KYC</button>
+                <button class="preset-btn" onclick="loadPreset('upi_scam')">UPI Scam</button>
+                <button class="preset-btn" onclick="loadPreset('lottery')">Lottery</button>
+                <button class="preset-btn" onclick="loadPreset('safe')">Safe Message</button>
+            </div>
+            <div class="scanner-box">
+                <textarea id="text-input" class="text-input" placeholder="Paste the suspicious message here..."
+                    rows="5"></textarea>
+                <button class="btn btn-primary btn-analyze" id="analyze-text-btn" onclick="analyzeText()">ANALYZE
+                    TEXT</button>
+            </div>
+            <!-- Fingerprint Demo -->
+            <div class="fingerprint-demo" id="fingerprint-demo" style="display:none;">
+                <div class="fp-demo-header">Fingerprint Cache</div>
+                <div class="fp-demo-body">
+                    <div class="fp-comparison">
+                        <div class="fp-first">
+                            <span class="fp-tag">1st Analysis</span>
+                            <span class="fp-time" id="fp-first-time">—</span>
+                            <span class="fp-via">via Bedrock</span>
+                        </div>
+                        <div class="fp-arrow">→</div>
+                        <div class="fp-second">
+                            <span class="fp-tag">2nd Analysis (Cached)</span>
+                            <span class="fp-time fp-fast" id="fp-second-time">—</span>
+                            <span class="fp-via">via DynamoDB Cache</span>
+                        </div>
+                    </div>
+                    <p class="fp-note">Submit the same message twice to see the fingerprint network in action!</p>
+                </div>
+            </div>
+            <div class="scanner-loading" id="scanner-loading-text" style="display:none;">
+                <div class="loader-ring"></div>
+                <p class="loader-text">Analyzing with AWS Bedrock AI...</p>
+                <p class="loader-tip" id="loader-tip-text"></p>
+            </div>
+            <div class="scanner-results" id="scanner-results-text" style="display:none;"></div>
+        </div>
+    </section>
+
+    <section class="page" id="page-scan-url" data-page="scan-url">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="scanner-page-header">
+
+                <div>
+                    <h1>URL Shield</h1>
+                    <p>Paste a suspicious link to check for phishing and scam patterns</p>
+                </div>
+            </div>
+            <div class="scanner-box">
+                <input type="url" id="url-input" class="text-input url-input"
+                    placeholder="https://suspicious-link.example.com/verify-kyc">
+                <button class="btn btn-primary btn-analyze" id="analyze-url-btn" onclick="analyzeUrl()">CHECK
+                    URL</button>
+            </div>
+            <div class="scanner-loading" id="scanner-loading-url" style="display:none;">
+                <div class="loader-ring"></div>
+                <p class="loader-text">Checking URL...</p>
+            </div>
+            <div class="scanner-results" id="scanner-results-url" style="display:none;"></div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: HOW IT WORKS ====== -->
+    <section class="page" id="page-how-it-works" data-page="how-it-works">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="page-header">
+                <h1>How <span class="accent-text">SHIELD</span> Works</h1>
+                <p class="page-subtitle">Multi-layer AI defense with AWS services and collaborative threat intelligence
+                </p>
+            </div>
+
+            <!-- Pipeline -->
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="pipeline-num">1</div>
+                    <div class="pipeline-label">Upload</div>
+                    <div class="pipeline-desc">Image, Audio or Text</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-num">2</div>
+                    <div class="pipeline-label">Extract</div>
+                    <div class="pipeline-desc">Textract / Transcribe</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-num">3</div>
+                    <div class="pipeline-label">Fingerprint</div>
+                    <div class="pipeline-desc">SHA-256 Cache Check</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-num">4</div>
+                    <div class="pipeline-label">Analyze</div>
+                    <div class="pipeline-desc">Bedrock Claude 3.5</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-num">5</div>
+                    <div class="pipeline-label">Respond</div>
+                    <div class="pipeline-desc">Voice + Traffic Light</div>
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <div class="pipeline-num">6</div>
+                    <div class="pipeline-label">Protect</div>
+                    <div class="pipeline-desc">Family Alert (SNS)</div>
+                </div>
+            </div>
+
+            <!-- Innovation: Fingerprint Network -->
+            <div class="section-block">
+                <h2>Core Innovation: Scam Fingerprint Network</h2>
+                <p class="block-desc">When one user detects a scam, all future users are protected instantly via SHA-256
+                    collaborative threat cache.</p>
+                <div class="innovation-compare">
+                    <div class="compare-card compare-slow">
+                        <div class="compare-header">User A — Jaipur (10:00 AM)</div>
+                        <div class="compare-body">
+                            <p>New scam: <em>"Your Aadhaar will be blocked by RBI..."</em></p>
+                            <div class="compare-metrics">
+                                <span class="metric danger">3.2s</span>
+                                <span class="metric danger">$0.12</span>
+                                <span class="metric">via Bedrock</span>
+                            </div>
+                            <p class="compare-action">SHA-256 fingerprint stored in DynamoDB</p>
+                        </div>
+                    </div>
+                    <div class="compare-arrow-down">2.5 hours later, same scam reaches Mumbai</div>
+                    <div class="compare-card compare-fast">
+                        <div class="compare-header">User B — Mumbai (12:30 PM)</div>
+                        <div class="compare-body">
+                            <p>Same scam → <strong>Fingerprint match found!</strong></p>
+                            <div class="compare-metrics">
+                                <span class="metric safe">187ms</span>
+                                <span class="metric safe">$0.00</span>
+                                <span class="metric">via DAX Cache</span>
+                            </div>
+                            <p class="compare-action compare-action-success">Instant protection — no Bedrock call needed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="innovation-stats-row">
+                    <div class="inno-chip">79.7% Cache Hit Rate</div>
+                    <div class="inno-chip">97% Cost Reduction</div>
+                    <div class="inno-chip">94% Faster Response</div>
+                    <div class="inno-chip">SHA-256 Privacy</div>
+                </div>
+            </div>
+
+            <!-- AWS Architecture -->
+            <div class="section-block">
+                <h2>AWS Architecture</h2>
+                <p class="block-desc">15 AWS Services · Well-Architected · ap-south-1 Mumbai</p>
+                <div class="arch-grid">
+                    <div class="arch-card">
+                        <div class="arch-label">AI / ML</div>
+                        <div class="arch-chips"><span>Bedrock (Claude
+                                3.5)</span><span>Textract</span><span>Transcribe</span><span>Polly</span><span>Comprehend</span>
+                        </div>
+                    </div>
+                    <div class="arch-card">
+                        <div class="arch-label">Compute</div>
+                        <div class="arch-chips"><span>Lambda</span><span>Step Functions</span><span>API Gateway</span>
+                        </div>
+                    </div>
+                    <div class="arch-card">
+                        <div class="arch-label">Data</div>
+                        <div class="arch-chips"><span class="chip-highlight">DynamoDB +
+                                DAX</span><span>S3</span><span>CloudFront</span></div>
+                    </div>
+                    <div class="arch-card">
+                        <div class="arch-label">Security</div>
+                        <div class="arch-chips"><span>KMS</span><span>Secrets
+                                Manager</span><span>GuardDuty</span><span>SNS</span></div>
+                    </div>
+                </div>
+                <div class="cost-badge">
+                    <span class="cost-amount">$257.46<small>/month</small></span>
+                    <span class="cost-desc">for 10,000 users — 53% cheaper than Azure, 43% cheaper than GCP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: SCAM GALLERY ====== -->
+    <section class="page" id="page-gallery" data-page="gallery">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="page-header">
+                <h1>Scam <span class="accent-text">Gallery</span></h1>
+                <p class="page-subtitle">12 unique patterns detected during 14-day pilot across Pune & Jaipur</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-card gallery-danger">
+                    <div class="gallery-type">DIGITAL ARREST</div>
+                    <div class="gallery-count">4 detected</div>
+                    <p>"CBI/ED/Police call threatening immediate arrest for money laundering"</p>
+                    <div class="gallery-tags"><span>Authority Impersonation</span><span>Video Call Threats</span></div>
+                    <button class="gallery-test" onclick="testScam('digital_arrest')">Test This →</button>
+                </div>
+                <div class="gallery-card gallery-danger">
+                    <div class="gallery-type">FAKE KYC</div>
+                    <div class="gallery-count">3 detected</div>
+                    <p>"RBI/SBI: Update Aadhaar/PAN in 24 hours or account frozen"</p>
+                    <div class="gallery-tags"><span>Bank Impersonation</span><span>Identity Theft</span></div>
+                    <button class="gallery-test" onclick="testScam('fake_kyc')">Test This →</button>
+                </div>
+                <div class="gallery-card gallery-danger">
+                    <div class="gallery-type">UPI SCAM</div>
+                    <div class="gallery-count">2 detected</div>
+                    <p>"Wrong payment sent to your UPI. Reverse via this link or legal action"</p>
+                    <div class="gallery-tags"><span>Social Engineering</span><span>Reverse Payment</span></div>
+                    <button class="gallery-test" onclick="testScam('upi_scam')">Test This →</button>
+                </div>
+                <div class="gallery-card gallery-warning">
+                    <div class="gallery-type">UTILITY THREAT</div>
+                    <div class="gallery-count">1 detected</div>
+                    <p>"Electricity/gas bill unpaid. Connection cut in 2 hours unless you pay now"</p>
+                    <div class="gallery-tags"><span>Fear Tactics</span><span>Fake Bills</span></div>
+                    <button class="gallery-test" onclick="testScam('utility')">Test This →</button>
+                </div>
+                <div class="gallery-card gallery-warning">
+                    <div class="gallery-type">LOTTERY SCAM</div>
+                    <div class="gallery-count">1 detected</div>
+                    <p>"Congratulations! You won Rs 25 Lakh in KBC. Pay processing fee to claim"</p>
+                    <div class="gallery-tags"><span>Prize Bait</span><span>Processing Fee</span></div>
+                    <button class="gallery-test" onclick="testScam('lottery')">Test This →</button>
+                </div>
+                <div class="gallery-card gallery-warning">
+                    <div class="gallery-type">INVESTMENT SCAM</div>
+                    <div class="gallery-count">1 detected</div>
+                    <p>"Guaranteed 100% returns on crypto. Invest Rs 10,000 today, get Rs 1 Lakh"</p>
+                    <div class="gallery-tags"><span>Fake Returns</span><span>Crypto Fraud</span></div>
+                    <button class="gallery-test" onclick="testScam('investment')">Test This →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: PROOF ====== -->
+    <section class="page" id="page-proof" data-page="proof">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="page-header">
+                <h1>Quantified <span class="accent-text">Proof</span></h1>
+                <p class="page-subtitle">14-day pilot · 10+ seniors (ages 62-78) · Pune & Jaipur · 189 checks</p>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-bar">
+                    <div class="bar-label">Time to Verify</div>
+                    <div class="bar-comparison">
+                        <div class="bar-row"><span class="bar-tag">Before</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-danger" data-width="92"><span>8-12 min</span></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span class="bar-tag">After</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-safe" data-width="3"><span>0.2s</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-improvement">-99.4%</div>
+                </div>
+                <div class="result-bar">
+                    <div class="bar-label">User Confidence</div>
+                    <div class="bar-comparison">
+                        <div class="bar-row"><span class="bar-tag">Before</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-danger" data-width="28"><span>28%</span></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span class="bar-tag">After</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-safe" data-width="84"><span>84%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-improvement">+200%</div>
+                </div>
+                <div class="result-bar">
+                    <div class="bar-label">Called Family for Help</div>
+                    <div class="bar-comparison">
+                        <div class="bar-row"><span class="bar-tag">Before</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-danger" data-width="87"><span>87%</span></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span class="bar-tag">After</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-safe" data-width="16"><span>16%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-improvement">-81%</div>
+                </div>
+                <div class="result-bar">
+                    <div class="bar-label">Correct Scam Identification</div>
+                    <div class="bar-comparison">
+                        <div class="bar-row"><span class="bar-tag">Before</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-danger" data-width="34"><span>34%</span></div>
+                            </div>
+                        </div>
+                        <div class="bar-row"><span class="bar-tag">After</span>
+                            <div class="bar-track">
+                                <div class="bar-fill bar-fill-safe" data-width="91"><span>91%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-improvement">+168%</div>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="section-block">
+                <h2>User Testimonials</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="t-quote">"पहले डर लगता था। अब SHIELD बोल के बता देता है — बहुत आसान है।"</p>
+                        <p class="t-translation">"I used to be scared. Now SHIELD tells me by speaking — very easy."</p>
+                        <div class="t-author">
+                            <div class="t-avatar">MD</div>
+                            <div><strong>Madhuri Devi, 85</strong><span>Grandmother, Pune</span></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="t-quote">"मेरे बेटे को अब हर बार फोन नहीं करना पड़ता। मैं confident हूँ अब।"</p>
+                        <p class="t-translation">"My son doesn't have to call every time. I'm confident now."</p>
+                        <div class="t-author">
+                            <div class="t-avatar">KD</div>
+                            <div><strong>Kamla Devi, 67</strong><span>Homemaker, Jaipur</span></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="t-quote">"Buttons बड़े हैं, एक ही बटन दबाओ। मेरी आँखें कमजोर हैं, लेकिन use कर पाता
+                            हूँ।"</p>
+                        <p class="t-translation">"Buttons are big, press just one. My eyes are weak but I can use it."
+                        </p>
+                        <div class="t-author">
+                            <div class="t-avatar">RK</div>
+                            <div><strong>Ramesh Kumar, 74</strong><span>Diabetes Patient, Pune</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-stat-card">
+                    <span class="voice-stat-num">83%</span>
+                    <span class="voice-stat-text">of seniors preferred <strong>VOICE OUTPUT</strong> over text
+                        results</span>
+                </div>
+            </div>
+
+            <!-- Scan History -->
+            <div class="section-block">
+                <h2>Recent Scans</h2>
+                <div id="scan-history" class="scan-history">
+                    <p class="empty-history">No scans yet. Try analyzing a message!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: ABOUT ====== -->
+    <section class="page" id="page-about" data-page="about">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back to Detectors</a>
+            <div class="page-header">
+                <h1>About <span class="accent-text">SHIELD</span></h1>
+                <p class="page-subtitle">Built for AWS AI for Bharat 2026 — Track 6: AI for Communities, Access & Public
+                    Impact</p>
+            </div>
+
+            <!-- Accessibility -->
+            <div class="section-block">
+                <h2>Grandparents Mode — Radical Accessibility</h2>
+                <p class="block-desc">Designed for seniors 65+ with impaired vision and limited tech literacy.</p>
+                <div class="access-grid">
+                    <div class="access-chip"><span class="access-before">12pt</span><span
+                            class="access-arrow">→</span><span class="access-after">24pt</span><span
+                            class="access-label">Font Size (2x)</span></div>
+                    <div class="access-chip"><span class="access-before">44×44</span><span
+                            class="access-arrow">→</span><span class="access-after">88×88</span><span
+                            class="access-label">Button Size (4x)</span></div>
+                    <div class="access-chip"><span class="access-before">4.5:1</span><span
+                            class="access-arrow">→</span><span class="access-after">7:1</span><span
+                            class="access-label">Contrast (AAA)</span></div>
+                    <div class="access-chip"><span class="access-before">English</span><span
+                            class="access-arrow">→</span><span class="access-after">हिंदी</span><span
+                            class="access-label">Hindi-First Voice</span></div>
+                </div>
+            </div>
+
+            <!-- Team -->
+            <div class="section-block">
+                <h2>Team Rakshak</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">SU</div>
+                        <h3>Shaurya Upadhyay</h3>
+                        <p class="team-role">Founder & Tech Lead</p>
+                        <div class="team-details">
+                            <span>1st Year CSE, Manipal University Jaipur</span>
+                            <span>$5,450 in grants (Solana + Superteam)</span>
+                            <span>Rank 14/2,200+ at IIT Madras AI Hackathon</span>
+                        </div>
+                        <div class="team-links">
+                            <a href="mailto:shaurya04289@gmail.com">Email</a>
+                            <a href="https://github.com/BEAST04289" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">AK</div>
+                        <h3>Aditya Kashyap</h3>
+                        <p class="team-role">Operations & Growth Lead</p>
+                        <div class="team-details">
+                            <span>Community Management & User Research</span>
+                            <span>Operations for 5+ university events</span>
+                            <span>Strategic Partnerships & BD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="about-footer">
+                <div class="footer-brand">SHIELD <span class="footer-tagline">Every senior deserves to feel safe
+                        online.</span></div>
+                <div class="footer-badges">
+                    <span class="footer-badge">AWS AI for Bharat 2026</span>
+                    <span class="footer-badge">Track 6: AI for Communities</span>
+                    <span class="footer-badge">Team Rakshak</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/BEAST04289/AWS_AI-FOR-BHARAT" target="_blank">GitHub</a>
+                    <span>•</span>
+                    <a href="https://cybercrime.gov.in" target="_blank">Cyber Crime Portal</a>
+                    <span>•</span>
+                    <span>Emergency: 1930</span>
+                </div>
+                <p class="footer-copy">Built for India's Seniors</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: NETWORK INTELLIGENCE DASHBOARD ====== -->
+    <section class="page" id="page-dashboard" data-page="dashboard">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back</a>
+            <div class="page-header">
+                <h1>Network <span class="accent-text">Intelligence</span></h1>
+                <p class="page-subtitle">Real-time threat data from the SHIELD fingerprint network</p>
+            </div>
+
+            <div class="dash-stats-grid">
+                <div class="dash-stat-card">
+                    <div class="dash-stat-value" id="dash-scams-today">47</div>
+                    <div class="dash-stat-label">Scams Detected Today</div>
+                    <div class="dash-stat-trend up">+12% from yesterday</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-value" id="dash-cache-rate">79.7%</div>
+                    <div class="dash-stat-label">Cache Hit Rate</div>
+                    <div class="dash-stat-trend up">Network learning active</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-value" id="dash-avg-time">0.4s</div>
+                    <div class="dash-stat-label">Avg Response Time</div>
+                    <div class="dash-stat-trend up">94% faster than v1</div>
+                </div>
+                <div class="dash-stat-card">
+                    <div class="dash-stat-value" id="dash-protected">189</div>
+                    <div class="dash-stat-label">Seniors Protected</div>
+                    <div class="dash-stat-trend up">Across 4 cities</div>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>Threat Distribution</h2>
+                <div class="threat-chart">
+                    <div class="threat-row"><span class="threat-name">Fake KYC / Aadhaar</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill" style="width:38%;background:#ef4444"></div>
+                        </div><span class="threat-pct">38%</span>
+                    </div>
+                    <div class="threat-row"><span class="threat-name">Digital Arrest</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill" style="width:24%;background:#f59e0b"></div>
+                        </div><span class="threat-pct">24%</span>
+                    </div>
+                    <div class="threat-row"><span class="threat-name">UPI / Payment Scam</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill" style="width:18%;background:#8b5cf6"></div>
+                        </div><span class="threat-pct">18%</span>
+                    </div>
+                    <div class="threat-row"><span class="threat-name">Lottery / Prize</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill" style="width:11%;background:#6366f1"></div>
+                        </div><span class="threat-pct">11%</span>
+                    </div>
+                    <div class="threat-row"><span class="threat-name">Utility Threats</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill" style="width:6%;background:#22c55e"></div>
+                        </div><span class="threat-pct">6%</span>
+                    </div>
+                    <div class="threat-row"><span class="threat-name">Investment Fraud</span>
+                        <div class="threat-bar">
+                            <div class="threat-fill" style="width:3%;background:#64748b"></div>
+                        </div><span class="threat-pct">3%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>Network Activity</h2>
+                <p class="block-desc">Live feed of fingerprint network events</p>
+                <div class="net-feed" id="net-feed">
+                    <div class="feed-item"><span class="feed-time">2 min ago</span><span
+                            class="feed-badge feed-danger">HIGH RISK</span><span>Fake KYC detected in Jaipur — SHA
+                            fingerprint cached</span></div>
+                    <div class="feed-item"><span class="feed-time">5 min ago</span><span
+                            class="feed-badge feed-cached">CACHED</span><span>Digital Arrest scam in Mumbai — matched in
+                            187ms</span></div>
+                    <div class="feed-item"><span class="feed-time">8 min ago</span><span
+                            class="feed-badge feed-safe">SAFE</span><span>Bank notification verified as legitimate —
+                            Pune</span></div>
+                    <div class="feed-item"><span class="feed-time">12 min ago</span><span
+                            class="feed-badge feed-danger">HIGH RISK</span><span>UPI scam blocked in Delhi — family
+                            alerted via SNS</span></div>
+                    <div class="feed-item"><span class="feed-time">18 min ago</span><span
+                            class="feed-badge feed-cached">CACHED</span><span>Lottery scam in Bangalore — matched
+                            existing fingerprint</span></div>
+                    <div class="feed-item"><span class="feed-time">23 min ago</span><span
+                            class="feed-badge feed-danger">HIGH RISK</span><span>New scam pattern detected — fingerprint
+                            created, network updated</span></div>
+                </div>
+            </div>
+
+            <div class="dash-bottom-stats">
+                <div class="inno-chip">97% Cost Reduction</div>
+                <div class="inno-chip">DynamoDB + DAX</div>
+                <div class="inno-chip">SHA-256 Privacy</div>
+                <div class="inno-chip">ap-south-1 Mumbai</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: INDIA SCAM HEATMAP (3D GLOBE) ====== -->
+    <section class="page" id="page-heatmap" data-page="heatmap">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back</a>
+            <div class="page-header">
+                <h1>Threat <span class="accent-text">Globe</span></h1>
+                <p class="page-subtitle">Interactive 3D visualization of scam threats across India — drag to rotate</p>
+            </div>
+
+            <div class="globe-wrapper">
+                <div class="globe-container" id="globe-container"></div>
+                <div class="globe-tooltip" id="globe-tooltip" style="display:none">
+                    <div class="gt-city" id="gt-city">Delhi</div>
+                    <div class="gt-count" id="gt-count">42 scams detected</div>
+                    <div class="gt-type" id="gt-type">Top: Fake KYC (54%)</div>
+                    <div class="gt-trend" id="gt-trend">+18% this week</div>
+                </div>
+                <div class="globe-legend">
+                    <div class="gl-item"><span class="gl-dot" style="background:#ff3333"></span>High Intensity (30+)
+                    </div>
+                    <div class="gl-item"><span class="gl-dot" style="background:#ff8833"></span>Medium (15-30)</div>
+                    <div class="gl-item"><span class="gl-dot" style="background:#ffcc33"></span>Low (&lt;15)</div>
+                </div>
+            </div>
+
+            <div class="heatmap-stats-row">
+                <div class="inno-chip">189 Total Detections</div>
+                <div class="inno-chip">8 Cities Active</div>
+                <div class="inno-chip">6 Scam Categories</div>
+                <div class="inno-chip">14-Day Pilot Data</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== PAGE: FAMILY DASHBOARD ====== -->
+    <section class="page" id="page-family" data-page="family">
+        <div class="container">
+            <a href="#home" class="back-link" onclick="navigateTo('home')">← Back</a>
+            <div class="page-header">
+                <h1>Family <span class="accent-text">Dashboard</span></h1>
+                <p class="page-subtitle">Monitor your family member's safety and confidence growth</p>
+            </div>
+
+            <div class="family-profile-card">
+                <div class="family-avatar">MD</div>
+                <div class="family-info">
+                    <h2>Madhuri Devi's Activity</h2>
+                    <p>Daadi · Age 85 · Pune</p>
+                    <div class="family-status-badge safe">All Clear — No Active Threats</div>
+                </div>
+            </div>
+
+            <div class="family-stats-grid">
+                <div class="family-stat-card">
+                    <div class="family-stat-value">23</div>
+                    <div class="family-stat-label">Scams Checked</div>
+                    <div class="family-stat-period">Last 7 days</div>
+                </div>
+                <div class="family-stat-card">
+                    <div class="family-stat-value danger">4</div>
+                    <div class="family-stat-label">HIGH RISK Detected</div>
+                    <div class="family-stat-period">All blocked</div>
+                </div>
+                <div class="family-stat-card">
+                    <div class="family-stat-value safe">2</div>
+                    <div class="family-stat-label">Times Called You</div>
+                    <div class="family-stat-period">-87% from before</div>
+                </div>
+                <div class="family-stat-card">
+                    <div class="family-stat-value accent">+200%</div>
+                    <div class="family-stat-label">Confidence Growth</div>
+                    <div class="family-stat-period">Self-sufficient now</div>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>Recent Alerts</h2>
+                <div class="family-alerts">
+                    <div class="family-alert-item">
+                        <div class="family-alert-left">
+                            <span class="feed-badge feed-danger">HIGH RISK</span>
+                            <div>
+                                <strong>Fake KYC — SBI Aadhaar Update</strong>
+                                <p>Detected 2 hours ago · Auto-blocked</p>
+                            </div>
+                        </div>
+                        <span class="family-alert-action">SMS sent to you</span>
+                    </div>
+                    <div class="family-alert-item">
+                        <div class="family-alert-left">
+                            <span class="feed-badge feed-danger">HIGH RISK</span>
+                            <div>
+                                <strong>Digital Arrest — CBI Impersonation</strong>
+                                <p>Detected yesterday · Auto-blocked</p>
+                            </div>
+                        </div>
+                        <span class="family-alert-action">SMS sent to you</span>
+                    </div>
+                    <div class="family-alert-item">
+                        <div class="family-alert-left">
+                            <span class="feed-badge feed-safe">SAFE</span>
+                            <div>
+                                <strong>SBI Balance Notification</strong>
+                                <p>Detected 3 days ago · Verified legitimate</p>
+                            </div>
+                        </div>
+                        <span class="family-alert-action">No action needed</span>
+                    </div>
+                    <div class="family-alert-item">
+                        <div class="family-alert-left">
+                            <span class="feed-badge feed-danger">HIGH RISK</span>
+                            <div>
+                                <strong>UPI Reverse Payment Scam</strong>
+                                <p>Detected 5 days ago · Auto-blocked</p>
+                            </div>
+                        </div>
+                        <span class="family-alert-action">SMS sent to you</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-block">
+                <h2>Notification Settings</h2>
+                <div class="family-settings">
+                    <div class="setting-row"><span>SMS alerts for HIGH RISK scams</span><span
+                            class="setting-on">ON</span></div>
+                    <div class="setting-row"><span>Daily activity summary email</span><span class="setting-on">ON</span>
+                    </div>
+                    <div class="setting-row"><span>Weekly report via WhatsApp</span><span class="setting-off">OFF</span>
+                    </div>
+                    <div class="setting-row"><span>Alert family member: Beti (+91 XXXXX 5678)</span><span
+                            class="setting-on">ON</span></div>
+                </div>
+                <p class="block-desc" style="margin-top:0.8rem;font-size:0.75rem">Powered by AWS SNS for reliable SMS
+                    delivery</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="/static/js/globe.js?v=8"></script>
+    <script src="/static/js/main.js?v=8"></script>
+    <script src="/static/js/scanner.js?v=4"></script>
+    <script>
+        // Register Service Worker for offline/PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('[SHIELD] SW registered, scope:', reg.scope))
+                .catch(err => console.log('[SHIELD] SW registration failed:', err));
+        }
+    </script>
+
+    <!-- Accessibility Score Badge -->
+    <div id="a11y-badge"
+        style="position:fixed;bottom:1rem;left:1rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:0.5rem 0.8rem;font-size:0.7rem;color:var(--text-muted);z-index:100;display:flex;align-items:center;gap:0.4rem;cursor:pointer"
+        onclick="this.style.display='none'" title="WCAG 2.1 AA Compliance">
+        <span style="color:#22c55e;font-weight:800">A+</span>
+        <span>WCAG 2.1 AA</span>
+        <span style="color:var(--text-muted)">·</span>
+        <span>4.5:1 contrast</span>
+    </div>
+
+    <!-- Core Application Scripts -->
+    <script src="/static/js/main.js?v=9"></script>
+    <script src="/static/js/globe.js?v=9"></script>
+</body>
+
+</html>

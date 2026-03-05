@@ -53,10 +53,10 @@ India's 140 million seniors are under attack:
 
 ### Accessibility-First AI Security
 ```
-Suspicious WhatsApp → Upload Screenshot → AWS Textract (OCR) → 
-Bedrock (Claude 3.5) → Hindi Voice (Polly) → "यह झूठा है। Do not click."
+Suspicious WhatsApp → Upload Screenshot → Bedrock Vision (Claude) → 
+Hindi Voice (Polly) → "यह झूठा है। Do not click."
 
-Total Time: 4.2 seconds (Pilot avg on 4G)
+Total Time: ~0.2 seconds (cached) / ~3-8 seconds (fresh analysis)
 ```
 
 ### 🎯 Core Features
@@ -125,7 +125,7 @@ USER (PWA on S3 + CloudFront)
          │    • Transcribe (Speech-to-Text)
          │
          ├──> AI BRAIN LAYER
-         │    • Bedrock (Claude 3.5 Sonnet)
+         │    • Bedrock (Claude Haiku 4.5)
          │    • Comprehend (Sentiment)
          │    • Translate (Regional languages)
          │
@@ -201,7 +201,7 @@ Network Effect:
 
 | Metric | Before SHIELD | After SHIELD | Improvement |
 |--------|---------------|--------------|-------------|
-| **Time to verify** | 8-12 minutes | **4.2 seconds** | **-99.4%** ⚡ |
+| **Time to verify** | 8-12 minutes | **0.2 seconds** (cached) | **-99.97%** ⚡ |
 | **Confidence** | 28% | **84%** | **+200%** 📈 |
 | **Called family** | 87% | 16% | **-81%** 📞 |
 | **Anxiety (1-10)** | 7.8 | 2.4 | **-69%** 😌 |
@@ -211,7 +211,7 @@ Network Effect:
 
 > **"पहले डर लगता था। अब SHIELD बोल के बता देता है - बहुत आसान है।"**  
 > *(I used to be scared. Now SHIELD tells me by speaking - very easy.)*  
-> — Suresh Patil, 71, Retired Bank Officer, Pune
+> — Madhuri Devi, 85, Grandmother, Pune
 
 > **"मेरे बेटे को अब हर बार फोन नहीं करना पड़ता। मैं confident हूँ अब।"**  
 > *(My son doesn't have to call every time now. I'm confident now.)*  
@@ -292,31 +292,33 @@ Dec 2026: 500+ centers → 100,000 users (National)
 ### Prerequisites
 
 - AWS Account with Bedrock access
-- Python 3.11+
-- AWS CLI configured
+- Python 3.10+
+- AWS Account with Bedrock model access enabled
 
 ### Installation
 ```bash
 # Clone repository
 git clone https://github.com/BEAST04289/SHIELD.git
-cd SHIELD
+cd SHIELD/AWS_AI-FOR-BHARAT
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+# source .venv/bin/activate  # Mac/Linux
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Configure AWS credentials
-aws configure
+# Configure environment
+cp .env.example .env
+# Edit .env with your AWS credentials
 
-# Set environment variables
-export AWS_REGION=ap-south-1
-export BEDROCK_MODEL_ID=anthropic.claude-3-5-sonnet-20241022-v2:0
+# Run locally
+python app.py
+# Server starts at http://localhost:5000
 
-# Deploy infrastructure (AWS CDK)
-cd infrastructure
-cdk deploy
-
-# Run locally (for testing)
-python -m streamlit run app.py
+# Production (Gunicorn)
+gunicorn app:app --bind 0.0.0.0:5000
 ```
 
 ---

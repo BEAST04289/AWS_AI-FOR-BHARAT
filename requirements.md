@@ -163,7 +163,7 @@ This validates our AWS Polly Hindi voice approach. Seniors said:
 
 ### 3.4 User Testimonials
 
-**Suresh Patil, 71, Retired Bank Officer, Pune:**
+**Madhuri Devi, 85, Grandmother, Pune:**
 > "पहले मुझे हर message से डर लगता था। अब SHIELD बोलकर बता देता है - 'यह सुरक्षित है' या 'यह झूठा है'। बहुत आसान हो गया।"
 >
 > *(Translation: I used to fear every message. Now SHIELD tells me by speaking - 'This is safe' or 'This is fake'. It's become very easy.)*

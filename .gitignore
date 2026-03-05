@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.mp3
+*.wav
+.vscode/
+.DS_Store
+Thumbs.db
+temp_audio/
