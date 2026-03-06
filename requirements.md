@@ -351,6 +351,60 @@ Step 7: Returns verdict INSTANTLY (200ms, $0 cost)
 | **Low latency for 4G** | ✅ 10+ms Mumbai | ❌ 180ms Singapore |
 | **Hindi language support** | ✅ Native (Textract, Polly Aditi) | ⚠️ Limited |
 
+## 6.4 Deployment Strategy: EC2 vs Lambda
+
+**For AWS AI for Bharat 2026 Hackathon:**
+
+We deployed on **AWS EC2 t2.micro (Free Tier)** for the prototype, with a clear migration path to **serverless Lambda** for production.
+
+### Why EC2 for Prototype?
+
+| Factor | EC2 Advantage | Lambda Consideration |
+|--------|---------------|---------------------|
+| **Cost Predictability** | $0 (Free Tier for 12 months) | Uncertain during rapid testing (1M free requests, then $0.20/1M) |
+| **Debugging** | SSH access, real-time logs via `tail -f` | CloudWatch Logs with delay, harder to debug |
+| **Deployment Speed** | `git pull && sudo systemctl restart shield` (5 seconds) | Package, upload, wait for cold start (30-60 seconds) |
+| **Development Velocity** | Iterate in 48-hour hackathon without IAM policy debugging | Lambda + API Gateway + IAM = 2+ hours setup |
+
+### Why Lambda for Production?
+
+| Factor | Lambda Advantage |
+|--------|------------------|
+| **Scale** | Auto-scales to millions of requests, pay-per-use |
+| **Cost at Scale** | $0.20/1M requests + $0.0000166667 per GB-second (cheaper for 100K+ users) |
+| **Availability** | Multi-AZ by default, 99.95% SLA |
+| **Ops Burden** | Zero server management, auto-patching |
+
+### Migration Path (Already Prepared)
+
+Our application is **fully stateless** - designed from Day 1 for Lambda:
+```python
+# Current EC2 Flask route
+@app.route('/api/analyze/text', methods=['POST'])
+def analyze_text():
+    text = request.json['text']
+    result = analyze_scam(text)  # Stateless function
+    return jsonify(result)
+
+# Lambda handler (2-minute conversion)
+def lambda_handler(event, context):
+    body = json.loads(event['body'])
+    text = body['text']
+    result = analyze_scam(text)  # SAME stateless function
+    return {
+        'statusCode': 200,
+        'body': json.dumps(result)
+    }
+```
+
+**All service modules are Lambda-ready:**
+- ✅ `bedrock_analyzer.py` - No EC2 dependencies
+- ✅ `fingerprint.py` - Uses DynamoDB (works anywhere)
+- ✅ `tts_service.py` - Calls Polly API (stateless)
+- ✅ `visual_shield.py` - Textract + S3 (no local state)
+
+**Estimated Migration Time:** 2 hours (wrap routes, deploy SAM template, test)
+
 ---
 
 ## 7. Community Distribution Strategy
